@@ -18,3 +18,10 @@ install.packages("tidyr")          # data re-shaping
 install.packages("magrittr")       # pipe operator
 install.packages("gridExtra")      # provides side-by-side plottings()
 ```
+
+```{r stacked bar plot}
+boxes <- IncentiveDataV2csv %>%
+          ggplot(aes(x = Incentive)) +
+          geom_bar() 
+boxes
+```
