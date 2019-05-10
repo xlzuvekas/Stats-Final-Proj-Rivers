@@ -9,3 +9,12 @@ library(tidyverse)
 library(skimr)
 ```
 
+```{r}
+#Install Packages
+
+install.packages("ggplot2")        # plotting & data
+install.packages("dplyr")          # data manipulation
+install.packages("tidyr")          # data re-shaping
+install.packages("magrittr")       # pipe operator
+install.packages("gridExtra")      # provides side-by-side plottings()
+```
