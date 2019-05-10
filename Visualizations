@@ -1,0 +1,11 @@
+---
+title: "FinalProj"
+author: "Xavier Zuvekas, Braden Sheinkopf, Mark Ryan"
+date: "5/10/2019"
+output: html_document
+---
+```{r libraries}
+library(tidyverse)
+library(skimr)
+```
+
