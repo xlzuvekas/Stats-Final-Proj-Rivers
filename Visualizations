@@ -7,6 +7,8 @@ output: html_document
 ```{r libraries}
 library(tidyverse)
 library(skimr)
+library(ggthemes)
+library(scales)
 ```
 
 ```{r}
@@ -20,8 +22,30 @@ install.packages("gridExtra")      # provides side-by-side plottings()
 ```
 
 ```{r stacked bar plot}
-boxes <- IncentiveDataV2csv %>%
+boxes <- IncentiveFinal %>%
           ggplot(aes(x = Incentive)) +
-          geom_bar() 
+          geom_bar(fill= "#FF9900") 
 boxes
+```
+
+```{r scatterplot}
+busy_free <- IncentiveFinal %>%
+          ggplot(aes(x= How_Busy, y = Frees)) +
+          geom_point(alpha = .25, color = "#990099") +
+          stat_smooth(method = 'lm') +
+          labs(title ="How Many Frees vs. How Busy", 
+               x = "How Busy", y = "Number of Frees") +
+          scale_y_continuous(limits = c(0, 2),
+                     breaks = seq(0, 5, 2)) 
+busy_free
+
+```
+
+```{r 100% stacked}
+gender <- IncentiveFinal %>%
+            ggplot(aes(Gender, fill = Incentive)) +
+            geom_bar(position = "fill") +
+            labs(x = "Gender", y = "Proportion")+
+scale_fill_manual(values = c("#0099c6","#b82e2e"))
+gender
 ```
