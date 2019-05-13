@@ -28,6 +28,29 @@ boxes <- IncentiveFinal %>%
 boxes
 ```
 
+```{r proportions}
+prop_one_no <- 17/50
+prop_two_no <- 22/50
+prop_combined <- 39/100
+  
+incentive_props <- data.frame(prop_one_no,prop_two_no, prop_combined)
+incentive_props
+```
+
+```{r technical conditions}
+50*prop_one_no
+50*(1-prop_one_no)
+50*prop_two_no
+50*(1-prop_two_no)
+```
+
+```{r test of significance}
+two_prop_z_inference <- prop.test(x = c(17,22), 
+                        n = c(50, 50), correct = FALSE, conf.level = 0.95)
+two_prop_z_inference
+```
+```
+
 ```{r scatterplot}
 busy_free <- IncentiveFinal %>%
           ggplot(aes(x= How_Busy, y = Frees)) +
@@ -35,7 +58,7 @@ busy_free <- IncentiveFinal %>%
           stat_smooth(method = 'lm') +
           labs(title ="How Many Frees vs. How Busy", 
                x = "How Busy", y = "Number of Frees") +
-          scale_y_continuous(limits = c(0, 2),
+          scale_y_continuous(limits = c(0, 2.5),
                      breaks = seq(0, 5, 2)) 
 busy_free
 
@@ -48,4 +71,34 @@ gender <- IncentiveFinal %>%
             labs(x = "Gender", y = "Proportion")+
 scale_fill_manual(values = c("#0099c6","#b82e2e"))
 gender
+```
+
+```{r two-way table}
+incentive_totals <- IncentiveFinal %>%
+            group_by(Gender, Incentive) %>%
+            summarize(num = n()) %>%
+            spread(Gender, num)
+incentive_totals
+```
+
+```{r proportions}
+prop_one_no <- 12/22
+prop_two_no <- 10/17
+prop_combined <- 22/39
+  
+incentive_props <- data.frame(prop_one_no,prop_two_no, prop_combined)
+incentive_props
+```
+
+```{r technical conditions}
+22*prop_one_no
+22*(1-prop_one_no)
+17*prop_two_no
+17*(1-prop_two_no)
+```
+
+```{r test of significance}
+two_prop_z_inference <- prop.test(x = c(12,10), 
+                        n = c(22, 17), correct = FALSE, conf.level = 0.95)
+two_prop_z_inference
 ```
