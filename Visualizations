@@ -103,6 +103,7 @@ two_prop_z_inference <- prop.test(x = c(12,10),
 two_prop_z_inference
 ```
 
+---- Mark's Contributions ----
 
 #Density Curve for Age - Split up depending on Incentive
 age_den <- IncentiveData_Sheet1 %>%
@@ -111,3 +112,22 @@ age_den <- IncentiveData_Sheet1 %>%
             labs(x = "Age", y = "Density", title = "Density of Age") +
             geom_vline(aes(xintercept = median(Age)))
 age_den
+
+```{r 100 stacked}
+#100% Stacked - Shows Proportion of Incentive Level by Age
+age_incentive <- IncentiveData_Sheet1 %>%
+            ggplot(aes(Age, fill = Incentive)) +
+            geom_bar(position = "fill") +
+            labs(x = "Age", y = "Proportion", title = "Age of Respondents")+
+scale_fill_manual(values = c("#0099c6","#b82e2e"))
+age_incentive
+```
+
+```{r}
+#100% Stacked - Proportion of Respondents Based on Incentive Level
+response_level <-  Response_Level_Sheet1 %>%
+                    ggplot(aes(x = Incentive_YN, fill = Response_YN)) +
+                    geom_bar(position = "fill") +
+                    labs(x = "Incentive?", y = "Proportion", title = "Proportion of Respondents based on Incentive Level")
+response_level
+```
