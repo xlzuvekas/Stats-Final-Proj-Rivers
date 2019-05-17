@@ -20,11 +20,11 @@ install.packages("tidyr")          # data re-shaping
 install.packages("magrittr")       # pipe operator
 install.packages("gridExtra")      # provides side-by-side plottings()
 ```
-#Comparin prop of # who took incentive vs number who took regular
 ```{r stacked bar plot}
 boxes <- IncentiveFinal %>%
           ggplot(aes(x = Incentive)) +
-          geom_bar(fill= "#FF9900") 
+          geom_bar(fill= "#FF9900") + theme_linedraw() +
+          labs(title = "Number Respondents Based on Incentive Level")
 boxes
 ```
 
@@ -50,7 +50,7 @@ two_prop_z_inference <- prop.test(x = c(17,22),
 two_prop_z_inference
 ```
 
-#Scatterplot showing correlation of # of frees to how bbusy people feel they are
+
 ```{r scatterplot}
 busy_free <- IncentiveFinal %>%
           ggplot(aes(x= How_Busy, y = Frees)) +
@@ -63,13 +63,12 @@ busy_free <- IncentiveFinal %>%
 busy_free
 ```
 
-#100% stacked of gender and incentive
 ```{r 100% stacked}
 gender <- IncentiveFinal %>%
             ggplot(aes(Gender, fill = Incentive)) +
-            geom_bar(position = "fill") +
-            labs(x = "Gender", y = "Proportion")+
-scale_fill_manual(values = c("#0099c6","#b82e2e"))
+            geom_bar(position = "fill") + theme_linedraw() +
+scale_fill_manual(values = c("#0099c6","#b82e2e")) +
+            labs(x = "Gender", y = "Proportion", title = "Proportion of Respondents Based on Age")
 gender
 ```
 
